@@ -1,0 +1,19 @@
+const http = require('http');
+const httpProxy = require('http-proxy');
+
+// Create a new proxy server instance
+const proxy = httpProxy.createProxyServer({});
+
+// Create a simple HTTP server
+const server = http.createServer((req, res) => {
+  // Proxy the incoming request to the desired target URL
+  proxy.web(req, res, {
+    target: 'https://battledudes.io', // Replace with your desired target URL
+  });
+});
+
+// Start the server on a specific port
+const port = 3000; // Replace with your desired port number
+server.listen(port, () => {
+  console.log(`Proxy server is running on port ${port}`);
+});
